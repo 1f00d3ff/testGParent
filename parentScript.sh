@@ -1,18 +1,13 @@
 #!/bin/bash
 
-echo 'bread'
 if ! [[ -r .gitmodules ]]; then
   git submodule add git@github.com:1f00d3ff/testChild.git
 else
-  if ! [[ $(grep -c testChild .gitmodules) -ge 3 ]]; then
-    echo 'gitmodule is missing testChild'
-  else
+  if [[ $(grep -c testChild .gitmodules) -ge 3 ]]; then
     if ! [[ -r ./testChild/childScript.sh ]]; then
-      echo 'cloning testChild again'
       git clone git@github.com:1f00d3ff/testChild.git
     fi
   fi
 fi
-
-. ./testChild/childScript.sh
+git submodule foreach git pull origin master
 
