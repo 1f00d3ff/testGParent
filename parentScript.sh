@@ -8,8 +8,8 @@ else
     echo 'gitmodule is missing testChild'
   else
     if ! [[ -r ./testChild/childScript.sh ]]; then
-      echo 'something is broken'
-      git submodule add git@github.com:1f00d3ff/testChild.git
+      echo 'cloning testChild again'
+      git clone git@github.com:1f00d3ff/testChild.git
     fi
   fi
 fi
